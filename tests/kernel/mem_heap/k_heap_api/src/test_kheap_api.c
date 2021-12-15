@@ -229,3 +229,18 @@ void test_k_heap_alloc_pending_null(void)
 	k_thread_join(tid, K_FOREVER);
 	k_heap_free(&k_heap_test, p);
 }
+
+void test_k_heap_realloc(void)
+{
+	char *s1, *s2;
+
+	s1 = k_heap_aligned_alloc(&k_heap_test, sizeof(s1), 16, K_NO_WAIT);
+	zassert_not_null(s1, "k_heap_aligned_alloc operation failed");
+	strcpy(s1, "FOOBAR");
+
+	s2 = k_heap_aligned_realloc(&k_heap_test, s1, sizeof(s1), 64, K_NO_WAIT);
+	zassert_not_null(s2, "k_heap_aligned_realloc operation failed");
+	zassert_mem_equal(s2, "FOOBAR", 6, "memory not equal");
+
+	k_heap_free(&k_heap_test, s2);
+}

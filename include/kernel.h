@@ -5171,6 +5171,9 @@ void k_heap_init(struct k_heap *h, void *mem, size_t bytes);
 void *k_heap_aligned_alloc(struct k_heap *h, size_t align, size_t bytes,
 			k_timeout_t timeout);
 
+void *k_heap_aligned_realloc(struct k_heap *h, void *mem, size_t align,
+			     size_t bytes, k_timeout_t timeout);
+
 /**
  * @brief Allocate memory from a k_heap
  *

@@ -62,7 +62,13 @@ SYS_INIT(statics_init, POST_KERNEL, 0);
 #endif /* CONFIG_DEMAND_PAGING && !CONFIG_LINKER_GENERIC_SECTIONS_PRESENT_AT_BOOT */
 
 void *k_heap_aligned_alloc(struct k_heap *h, size_t align, size_t bytes,
-			k_timeout_t timeout)
+			   k_timeout_t timeout)
+{
+	return k_heap_aligned_realloc(h, NULL, align, bytes, timeout);
+}
+
+void *k_heap_aligned_realloc(struct k_heap *h, void *mem, size_t align,
+			     size_t bytes, k_timeout_t timeout)
 {
 	int64_t now, end = sys_clock_timeout_end_calc(timeout);
 	void *ret = NULL;
@@ -75,7 +81,7 @@ void *k_heap_aligned_alloc(struct k_heap *h, size_t align, size_t bytes,
 	bool blocked_alloc = false;
 
 	while (ret == NULL) {
-		ret = sys_heap_aligned_alloc(&h->heap, align, bytes);
+		ret = sys_heap_aligned_realloc(&h->heap, mem, align, bytes);
 
 		now = sys_clock_tick_get();
 		if (!IS_ENABLED(CONFIG_MULTITHREADING) ||
