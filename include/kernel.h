@@ -5319,6 +5319,20 @@ extern void *k_aligned_alloc(size_t align, size_t size);
 extern void *k_malloc(size_t size);
 
 /**
+ * @brief Change the size of the memory chunk pointed to by ptr.
+ *
+ * This routine provides traditional realloc() semantics. Memory is
+ * reallocated from the heap memory pool.
+ *
+ * @param ptr
+ * @param size New amount of memory requested (in bytes).
+ *
+ * @return Address of the allocated memory if successful; otherwise NULL.
+ *         On success ptr may be invalidated and so must no longer be used.
+ */
+extern void *k_realloc(void *ptr, size_t size);
+
+/**
  * @brief Free memory allocated from heap.
  *
  * This routine provides traditional free() semantics. The memory being

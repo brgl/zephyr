@@ -90,6 +90,27 @@ void *k_malloc(size_t size)
 	return ret;
 }
 
+void *k_realloc(void *ptr, size_t size)
+{
+	struct k_heap **heap_ref;
+	void *ret;
+
+	if (!ptr)
+		return k_malloc(size);
+
+	heap_ref = ptr;
+	ptr = --heap_ref;
+
+	ret = k_heap_aligned_realloc(*heap_ref, ptr, sizeof(void *),
+				     size, K_NO_WAIT);
+
+	heap_ref = ret;
+	*heap_ref = _SYSTEM_HEAP;
+	ret = ++heap_ref;
+
+	return ret;
+}
+
 void *k_calloc(size_t nmemb, size_t size)
 {
 	void *ret;

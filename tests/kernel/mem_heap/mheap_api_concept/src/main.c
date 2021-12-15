@@ -7,6 +7,7 @@
 #include <ztest.h>
 extern void test_mheap_malloc_free(void);
 extern void test_mheap_calloc(void);
+extern void test_mheap_realloc(void);
 extern void test_mheap_malloc_align4(void);
 extern void test_mheap_threadsafe(void);
 extern void test_k_aligned_alloc(void);
@@ -31,6 +32,7 @@ void test_main(void)
 	ztest_test_suite(mheap_api,
 			 ztest_unit_test(test_mheap_malloc_free),
 			 ztest_unit_test(test_mheap_calloc),
+			 ztest_unit_test(test_mheap_realloc),
 			 ztest_unit_test(test_mheap_malloc_align4),
 			 ztest_unit_test(test_mheap_threadsafe),
 			 ztest_unit_test(test_k_aligned_alloc),

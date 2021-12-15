@@ -133,6 +133,28 @@ void test_mheap_calloc(void)
 	k_free(mem);
 }
 
+void test_mheap_realloc(void)
+{
+	static const char *const str = "FOOBAR";
+	char *mem, *new;
+
+	mem = k_realloc(NULL, OVERFLOW_SIZE);
+	zassert_is_null(mem, "realloc operation failed");
+
+	mem = k_realloc(NULL, SIZE);
+	zassert_not_null(mem, "realloc operation failed");
+
+	strcpy(mem, str);
+	zassert_mem_equal(mem, str, strlen(str), "realloc operation failed");
+
+	new = k_realloc(mem, SIZE * 2);
+	zassert_not_null(new, "realloc operation failed");
+
+	zassert_mem_equal(new, str, strlen(str), "realloc operation failed");
+
+	k_free(new);
+}
+
 void test_k_aligned_alloc(void)
 {
 	void *r;
