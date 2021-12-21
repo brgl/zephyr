@@ -13,6 +13,9 @@ module = LVGL
 module-str = lvgl
 source "subsys/logging/Kconfig.template.log_config"
 
+config LV_CONF_SKIP
+	default n
+
 config APP_LINK_WITH_LVGL
 	bool "Link 'app' with LVGL"
 	default y
@@ -21,15 +24,17 @@ config APP_LINK_WITH_LVGL
 	  disabled if the include paths for LVGL are causing aliasing
 	  issues for 'app'.
 
+config LVGL_USE_FILESYSTEM
+	bool "Enable file system"
+	depends on FILE_SYSTEM
+	default y if FILE_SYSTEM
+	help
+	  Enable LittlevGL file system
+
 rsource "Kconfig.graphical"
 rsource "Kconfig.memory"
 rsource "Kconfig.input"
-rsource "Kconfig.feature"
-rsource "Kconfig.image"
-rsource "Kconfig.debug"
-rsource "Kconfig.themes"
-rsource "Kconfig.fonts"
-rsource "Kconfig.text"
-rsource "Kconfig.objects"
+
+source "../modules/lib/gui/lvgl/Kconfig"
 
 endif # LVGL

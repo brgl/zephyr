@@ -25,8 +25,8 @@ config LVGL_BITS_PER_PIXEL
 	int "Number of bits per pixel"
 	default 1
 
-choice LVGL_COLOR_DEPTH
-	default LVGL_COLOR_DEPTH_1
+choice LV_COLOR_DEPTH
+	default LV_COLOR_DEPTH_1
 endchoice
 
 endif # LVGL
