@@ -1,0 +1,20 @@
+identifier: flipper_zero
+name: Flipper Zero
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+ram: 192
+flash: 876
+supported:
+  - display
+  - gpio
+  - i2c
+  - input
+  - led
+  - rtc
+  - sdhc
+  - spi
+  - uart
+vendor: flipper
