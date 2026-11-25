@@ -5,4 +5,18 @@ if BOARD_FLIPPER_ZERO
 
 source "boards/common/usb/Kconfig.cdc_acm_serial.defconfig"
 
+if LVGL
+
+config LV_Z_VDB_SIZE
+	default 64
+
+configdefault LV_Z_DPI_DEF
+	default 102
+
+choice LV_Z_COLOR_FORMAT
+	default LV_Z_COLOR_FORMAT_I1
+endchoice
+
+endif # LVGL
+
 endif # BOARD_FLIPPER_ZERO
