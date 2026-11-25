@@ -173,6 +173,18 @@
 		blue-output-current = <50>;
 		white-output-current = <150>;
 	};
+
+	bq25896: charger@6b {
+		compatible = "ti,bq25896";
+		reg = <0x6b>;
+
+		/* Reset defaults of the device, about 1C for the 2100 mAh battery */
+		charger: charger {
+			compatible = "ti,bq25896-charger";
+			constant-charge-current-max-microamp = <2048000>;
+			constant-charge-voltage-max-microvolt = <4208000>;
+		};
+	};
 };
 
 /* Display and SD card share this bus */

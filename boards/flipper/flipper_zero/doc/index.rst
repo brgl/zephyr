@@ -19,6 +19,7 @@ Hardware
 - microSD card slot with card detect, sharing SPI2 with the display
 - Six push buttons: Up, Down, Left, Right, OK and Back
 - TI LP5562 LED driver on I2C1, driving the RGB LED and the display backlight
+- TI BQ25896 battery charger on I2C1 for the 2100 mAh battery
 - USART1 on pins 13 (TX) and 14 (RX) of the GPIO header
 - 18-pin GPIO header
 - USB 2.0 full-speed device port

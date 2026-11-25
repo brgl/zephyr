@@ -8,6 +8,7 @@ toolchain:
 ram: 192
 flash: 876
 supported:
+  - charger
   - display
   - gpio
   - i2c
